@@ -3,6 +3,12 @@ var router = require('express').Router();
 var Hotel = require('../models/hotel');
 var Restaurant = require('../models/restaurant');
 var Activity = require('../models/activity');
+var optionsRouter = require('./api/options.js')
+
+
+router.use('/api', optionsRouter)
+
+
 
 router.get('/', function(req, res, next) {
   Promise.all([
@@ -19,5 +25,10 @@ router.get('/', function(req, res, next) {
   })
   .catch(next);
 });
+
+
+
+
+
 
 module.exports = router;
