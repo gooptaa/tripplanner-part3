@@ -22,6 +22,16 @@ var dataModule = (function () {
       })
     },
 
+    dayPostHotelPromiseCreator: function(hotelId){
+      console.log("day post hotel promise creator this.id", this)
+      var url = '/api/days/' + this.id + '/hotels';
+      return $.ajax({
+        data: {hotelId},
+        method: 'POST',
+        url: url
+      })
+    },
+
     dayGetPromise: $.ajax({
       method: 'GET',
       url: '/api/days'

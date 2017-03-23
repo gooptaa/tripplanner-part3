@@ -98,6 +98,11 @@ var dayModule = (function () {
       case 'hotel':
         if (this.hotel) this.hotel.hide();
         this.hotel = attraction;
+        console.log("ATTRACTION HERE: ", attraction)
+        dataModule.dayPostHotelPromiseCreator(attraction.id)
+          .then(function(){
+            return
+          })
         break;
       case 'restaurant':
         utilsModule.pushUnique(this.restaurants, attraction);

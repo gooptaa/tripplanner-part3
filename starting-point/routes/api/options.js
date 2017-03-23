@@ -46,13 +46,11 @@ router.get('/days/:id', function(req, res, next){
 })
 
 router.post('/days', function(req, res, next){
-  const instance = Day.build()
-  console.log(instance);
-  // .then(function(createdDay){
-  //   console.log(createdDay, 'createdDay')
-  //   res.json(createdDay)
-  // })
-  // .catch(next)
+  Day.create(req.body)
+  .then(function(createdDay){
+    res.json(createdDay)
+  })
+  .catch(next)
 })
 
 router.delete('/days/:id', function(req, res, next){
@@ -78,7 +76,7 @@ router.post('/days/:id/hotels', function(req, res, next){
   Day.findById(req.params.id)
   .then(function(foundDay){
     return foundDay.update({
-      hotelId: req.body.id
+      hotelId: req.body.hotelId
     })
   }).then(function(foundDay){
     res.json(foundDay)

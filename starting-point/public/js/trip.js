@@ -50,10 +50,9 @@ var tripModule = (function () {
     if (this && this.blur) this.blur(); // removes focus box from buttons
     console.log('WE GOT HERE');
     var newDay;
-    dataModule.dayPostPromiseCreator().then(function(result){
-      console.log(result, 'RESULT');
-      newDay = dayModule.create({ number: result.id + 1 });
-      console.log(newDay, 'newday');
+    dataModule.dayPostPromiseCreator(days.length + 1)
+      .then(function(result){
+        newDay = dayModule.create({ number: result.id});
     }).then(function(){
       days.push(newDay);
       if (days.length === 1) {
