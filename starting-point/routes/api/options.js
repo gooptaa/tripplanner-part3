@@ -1,46 +1,31 @@
-var Sequelize = require('sequelize')
+var db = require('../../models');
+var Hotel = db.model('hotel');
+var Restaurant = db.model('restaurant');
+var Activity = db.model('activity');
 var router = require('express').Router();
-var Hotel = require('../../models/hotel');
-var Restaurant = require('../../models/restaurant');
-var Activity = require('../../models/activity');
 
+router.get('/hotels', function (req, res, next) {
+  Hotel.findAll()
+  .then(function (allHotels) {
+    res.json(allHotels)
+  })
+  .catch(next);
+});
 
-router.get('/hotels', function(req, res, next){
-  console.log('????');
-  Hotel.findAll().then(
-    function(array){
-      console.log('got here!')
-      res.status(200).json(array)
-    }
-  ).catch(next)
+router.get('/restaurants', function (req, res, next) {
+  Restaurant.findAll()
+  .then(function (allRestaurants) {
+    res.json(allRestaurants)
+  })
+  .catch(next);
+});
 
+router.get('/activities', function (req, res, next) {
+  Activity.findAll()
+  .then(function (allActivities) {
+    res.json(allActivities)
+  })
+  .catch(next);
+});
 
-
-})
-
-
-router.get('/restaurants', function(req, res, next){
-  Restaurant.findAll().then(
-    function(array){
-      res.status(200).json(array)
-    }
-  ).catch(next)
-
-
-
-})
-
-
-router.get('/activities', function(req, res, next){
-  Activity.findAll().then(
-    function(array){
-      res.status(200).json(array)
-    }
-  ).catch(next)
-
-
-
-})
-
-
-module.exports = router
+module.exports = router;
