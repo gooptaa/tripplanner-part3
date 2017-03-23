@@ -47,8 +47,8 @@ router.get('/days/:id', function(req, res, next){
 
 router.post('/days', function(req, res, next){
   Day.create(req.body)
-  .then(function(){
-    res.sendStatus(200)
+  .then(function(createdDay){
+    res.json(createdDay)
   })
   .catch(next)
 })
@@ -65,7 +65,9 @@ router.delete('/days/:id', function(req, res, next){
 router.post('/days/:id/restaurants', function(req, res, next){
   Day.findById(req.params.id)
   .then(function(foundDay){
-    foundDay.addRestaurant(req.body)
+     return foundDay.addRestaurant(req.body)
+  }).then(function(foundDay){
+    res.json(foundDay)
   })
   .catch(next)
 })
@@ -73,9 +75,11 @@ router.post('/days/:id/restaurants', function(req, res, next){
 router.post('/days/:id/hotels', function(req, res, next){
   Day.findById(req.params.id)
   .then(function(foundDay){
-    foundDay.update({
+    return foundDay.update({
       hotelId: req.body.id
     })
+  }).then(function(foundDay){
+    res.json(foundDay)
   })
   .catch(next)
 })
@@ -83,7 +87,9 @@ router.post('/days/:id/hotels', function(req, res, next){
 router.post('/days/:id/activities', function(req, res, next){
   Day.findById(req.params.id)
   .then(function(foundDay){
-    foundDay.addActivity(req.body)
+    return foundDay.addActivity(req.body)
+  }).then(function(foundDay){
+    res.json(foundDay)
   })
   .catch(next)
 })

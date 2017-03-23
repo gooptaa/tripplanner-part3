@@ -44,10 +44,17 @@ var tripModule = (function () {
     $addButton.on('click', addDay);
     $removeButton.on('click', deleteCurrentDay);
   });
-
+//= dayModule.create({ number: days.length + 1 }); // dayModule
   function addDay () {
     if (this && this.blur) this.blur(); // removes focus box from buttons
-    var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
+    var newDay;
+
+    dataModule.dayPostPromise.then(function(result){
+      console.log(result, 'RESULT');
+      newDay = dayModule.create({ number: result.id + 1 });
+    })
+
+
     days.push(newDay);
     if (days.length === 1) {
       currentDay = newDay;

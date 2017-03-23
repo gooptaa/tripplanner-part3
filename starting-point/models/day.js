@@ -9,8 +9,11 @@ const Activity = db.model('activity')
 const Day = db.define('day', {
 
 number: {
-  type: Sequelize.INTEGER
+  type: Sequelize.INTEGER,
+  allowNull: false,
+  defaultValue: this.id
 }
+
 
 
 
