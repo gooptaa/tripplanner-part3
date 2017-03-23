@@ -2,6 +2,7 @@ var db = require('../../models');
 var Hotel = db.model('hotel');
 var Restaurant = db.model('restaurant');
 var Activity = db.model('activity');
+var Day = db.model('day')
 var router = require('express').Router();
 
 router.get('/hotels', function (req, res, next) {
@@ -27,5 +28,17 @@ router.get('/activities', function (req, res, next) {
   })
   .catch(next);
 });
+
+router.get('/days', function(req, res, next) {
+  Day.findAll()
+  .then(function(allDays){
+    res.json(allDays)
+  })
+  .catch(next)
+
+
+});
+
+
 
 module.exports = router;
