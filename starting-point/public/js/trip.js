@@ -33,6 +33,7 @@ var tripModule = (function () {
   // method used both internally and externally
 
   function switchTo (newCurrentDay) {
+    console.log(newCurrentDay, 'newCurrentDay')
     if (currentDay) currentDay.hide();
     currentDay = newCurrentDay;
     currentDay.show();
@@ -47,19 +48,22 @@ var tripModule = (function () {
 //= dayModule.create({ number: days.length + 1 }); // dayModule
   function addDay () {
     if (this && this.blur) this.blur(); // removes focus box from buttons
+    console.log('WE GOT HERE');
     var newDay;
-
-    dataModule.dayPostPromise.then(function(result){
+    dataModule.dayPostPromiseCreator().then(function(result){
       console.log(result, 'RESULT');
       newDay = dayModule.create({ number: result.id + 1 });
+      console.log(newDay, 'newday');
+    }).then(function(){
+      days.push(newDay);
+      if (days.length === 1) {
+        currentDay = newDay;
+      }
+      switchTo(newDay);
     })
 
 
-    days.push(newDay);
-    if (days.length === 1) {
-      currentDay = newDay;
-    }
-    switchTo(newDay);
+
   }
 
   function deleteCurrentDay () {

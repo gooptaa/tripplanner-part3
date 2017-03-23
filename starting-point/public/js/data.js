@@ -14,10 +14,13 @@ var dataModule = (function () {
       url: '/api/restaurants'
     }),
 
-    dayPostPromise: $.ajax({
-      method: 'POST',
-      url: '/api/days'
-    }),
+    dayPostPromiseCreator: function(number){
+      return $.ajax({
+        data: {number},
+        method: 'POST',
+        url: '/api/days'
+      })
+    },
 
     dayGetPromise: $.ajax({
       method: 'GET',

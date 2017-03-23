@@ -15,6 +15,7 @@ var attractionsModule = (function () {
     dataModule.hotelsPromise,
     dataModule.restaurantsPromise,
     dataModule.activitiesPromise
+
   ])
   .then(function (data) {
     var hotels = data[0];

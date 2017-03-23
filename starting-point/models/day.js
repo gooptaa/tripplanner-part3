@@ -10,8 +10,8 @@ const Day = db.define('day', {
 
 number: {
   type: Sequelize.INTEGER,
-  allowNull: false,
-  defaultValue: this.id
+  defaultValue: function(){ return this.id},
+  allowNull: false
 }
 
 

@@ -46,11 +46,13 @@ router.get('/days/:id', function(req, res, next){
 })
 
 router.post('/days', function(req, res, next){
-  Day.create(req.body)
-  .then(function(createdDay){
-    res.json(createdDay)
-  })
-  .catch(next)
+  const instance = Day.build()
+  console.log(instance);
+  // .then(function(createdDay){
+  //   console.log(createdDay, 'createdDay')
+  //   res.json(createdDay)
+  // })
+  // .catch(next)
 })
 
 router.delete('/days/:id', function(req, res, next){
